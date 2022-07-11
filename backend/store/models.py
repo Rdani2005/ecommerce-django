@@ -29,7 +29,7 @@ class Product(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    # Extra instroctions
+    # Extra instructions
     class Meta:
         verbose_name_plural = 'Products'
         ordering = ('created',)

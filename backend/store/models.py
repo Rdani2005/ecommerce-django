@@ -1,13 +1,21 @@
-from django.db import models
 from django.contrib.auth.models import User
+
+from django.db import models
+from django.urls import reverse
 
 # Category model db use as ForeignKey
 class Category(models.Model):
     name = models.CharField(max_length=255, db_index=True)
     slug = models.SlugField(max_length=255, unique=True)
+
     # Instructions for the db model
     class Meta:
         verbose_name_plural = 'categories'
+
+    # Return absolute url
+    def get_absolute_url(self):
+        return reverse('store:category_list', args=[self.slug])
+    
 
     # Return the name of the category
     def __str__(self):
@@ -32,7 +40,11 @@ class Product(models.Model):
     # Extra instructions
     class Meta:
         verbose_name_plural = 'Products'
-        ordering = ('created',)
+        ordering = ('-created',)
+
+    #Return the URL
+    def get_absolute_url(self):
+        return reverse('store:product_detail', args=[self.slug])
 
     def __str__(self):
         return self.title

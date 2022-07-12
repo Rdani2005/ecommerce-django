@@ -67,7 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'store.views.categories',
+                'store.context_processors.categories',
             ],
         },
     },
@@ -112,8 +112,13 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static files URL (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
+
+# Static files (CSS, JavaScript, Images
+STATICFILES_DIR = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -15,17 +15,24 @@
     IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     =================================================================================================================================
 """
-from django.contrib import admin
-from django.urls import include, path
-from django.conf import settings
-from django.conf.urls.static import static
+# ------------------------- Libraries and Modules ------------------------------
+# Django: http://docs.djangoproject.com/
+from django.urls import path
+# Own Modules
+from . import views  # Importing the functions views
 
+# Name of the application
+app_name = 'basket'
+
+""" 
+    ----------------------------------------------------------------------
+            Setting up the Urls of the Django application
+    ----------------------------------------------------------------------
+        
+        1. Home View | This is the main view of the entire website
+        2. Product View | This is the Detail view of an specific product
+        3. Category View | This is the list of products avialable in the specific category
+"""
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('store.urls', namespace='store')),
-    path('basket/', include('basket.urls', namespace='basket')),
+    path('', views.basket_summary, name='basket_summary'),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)

@@ -15,17 +15,11 @@
     IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     =================================================================================================================================
 """
-from django.contrib import admin
-from django.urls import include, path
-from django.conf import settings
-from django.conf.urls.static import static
+# ------------------------- Libraries and Modules ------------------------------
+# Django: http://docs.djangoproject.com/
+from django.shortcuts import render
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('store.urls', namespace='store')),
-    path('basket/', include('basket.urls', namespace='basket')),
-]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+# Create your views here.
+def basket_summary(request):
+    return render(request, 'store/basket/summary.html')

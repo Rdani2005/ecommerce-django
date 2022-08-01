@@ -19,12 +19,17 @@
 # Django: http://docs.djangoproject.com/
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
-
+from django.views import View
 from .basket import Basket
 from store.models import Product
 
 def basket_summary(request):
     return render(request, 'store/basket/summary.html')
+
+
+# class basket_summary(View):
+#     def get(self, request):
+#         return render(request, 'store/basket/summary.html')
 
 
 def basket_add(request):
@@ -40,3 +45,16 @@ def basket_add(request):
         })
 
         return response
+
+# class basket_add(View):
+#     def post(self, request):
+#         product_id = int(request.POST.get('productid'))
+#         product = get_object_or_404(Product, id=product_id)
+#         basket = Basket(request)
+#         basket.add(product= product)
+
+#         response = JsonResponse({
+#              'test': 'data'
+#         })
+
+#         return response

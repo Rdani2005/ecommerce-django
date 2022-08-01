@@ -17,26 +17,28 @@
 """
 # --------------------------- Libraries and Modules ------------------------------
 # Django http://docs.djangoproject.com/
+from django.views import View
 from django.shortcuts import get_object_or_404, render
 # Own modules
 from .models import Category, Product # DB Models
 
 # ------------------------ Views -------------------------------
-# Return the home view, with all the avialable products
-def products_all(request):
-    products = Product.products.all()
-    return render(request, 'store/home.html', {'products': products})
-
+class products_all(View):
+    def get(self, request):
+        products = Product.products.all()
+        return render(request, 'store/home.html', {'products': products})
 
 # Return the view of all the products avialable in the specific category
-def category_list(request, category_slug):
-    category = get_object_or_404(Category, slug=category_slug)
-    products = Product.objects.filter(category=category)
-    return render(request, 'store/products/category.html', {'category': category, 'products': products})
+class category_list(View):
+    def get(self, request, category_slug):
+        category = get_object_or_404(Category, slug=category_slug)
+        products = Product.objects.filter(category=category)
+        return render(request, 'store/products/category.html', {'category': category, 'products': products})
 
 
 # Return the view of the product, with its details
-def product_detail(request, slug):
-    product = get_object_or_404(Product, slug=slug, in_stock=True)
-    return render(request, 'store/products/product.html', {'product': product})
+class product_detail(View):
+    def get(self, request, slug):
+        product = get_object_or_404(Product, slug=slug, in_stock=True)
+        return render(request, 'store/products/product.html', {'product': product})
 

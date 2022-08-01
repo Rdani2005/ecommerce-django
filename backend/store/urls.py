@@ -33,7 +33,7 @@ Setting up the Urls of the Django application
 3. Category View | This is the list of products avialable in the specific category
 """
 urlpatterns = [
-    path('', views.products_all, name='products_all'), # Home view
-    path('<slug:slug>', views.product_detail, name='product_detail'), # Product detail view
-    path('category/<slug:category_slug>/', views.category_list, name='category_list') # Category list view
+    path('', views.products_all.as_view(), name='products_all'), # Home view
+    path('<slug:slug>', views.product_detail.as_view(), name='product_detail'), # Product detail view
+    path('category/<slug:category_slug>/', views.category_list.as_view(), name='category_list') # Category list view
 ]

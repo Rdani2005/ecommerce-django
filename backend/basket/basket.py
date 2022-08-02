@@ -13,12 +13,14 @@ class Basket():
 
         self.basket = basket
 
-    def add(self, product):
+    def add(self, product, qty):
         """Add a product"""
         product_id = str(product.id)
 
-        if product_id not in self.basket:
-            self.basket[product_id] = {'price': str(product.price)}
+        if product_id in self.basket:
+            self.basket[product_id]['qty'] = qty
+        else:
+            self.basket[product_id] = {'price': str(product.price), 'qty': qty}
 
         self.save()
 
